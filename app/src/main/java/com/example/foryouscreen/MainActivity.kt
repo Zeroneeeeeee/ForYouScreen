@@ -11,17 +11,24 @@ import androidx.compose.foundation.gestures.snapping.SnapPosition
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -151,7 +158,8 @@ fun PeopleItems(
         }
         Text(
             name,
-            modifier.align(Alignment.CenterHorizontally))
+            modifier.align(Alignment.CenterHorizontally)
+        )
     }
 }
 @Composable
@@ -179,9 +187,66 @@ fun Body(modifier: Modifier = Modifier) {
                 )
             }
         }
+        LazyHorizontalGrid(
+            rows = GridCells.Fixed(3),
+            modifier=Modifier.height(200.dp)
+                .padding(start = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            items(10) { index ->
+                TopicItems(
+                    icon = R.drawable.ic_person,
+                    name = "Person #$index"
+                )
+            }
+        }
+        Spacer(modifier = Modifier.padding(top = 20.dp))
+        Button(onClick = {},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp)) {
+            Text("Done")
+        }
     }
-
 }
+@Preview(showBackground = true)
+@Composable
+fun TopicItems(
+    @DrawableRes icon:Int = R.drawable.ic_person,
+    name:String = "Accessibility"
+){
+    Row(modifier = Modifier
+        .size(width = 250.dp, height = 60.dp)
+        .clip(RoundedCornerShape(10.dp))
+        .background(Color.LightGray)
+
+    ){
+        Icon(
+            painterResource(icon),
+            "",
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(start = 5.dp)
+                .size(50.dp)
+        )
+        Text(name,
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(start = 5.dp)
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        IconButton(
+            onClick = {},
+            modifier = Modifier.align(Alignment.CenterVertically)
+        ) {
+            Icon(Icons.Default.Add,
+                ""
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
