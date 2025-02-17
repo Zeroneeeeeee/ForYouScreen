@@ -237,12 +237,21 @@ fun Body(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.padding(top = 24.dp))
-        Text("What are you interested in?", fontWeight = FontWeight.Bold)
+        Text("What are you interested in?",
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp, 0.dp),
+            style = MaterialTheme.typography.titleMedium.copy(textAlign = TextAlign.Center)
+        )
         Spacer(modifier = Modifier.padding(top = 24.dp))
         Text(
             text = "Updates from interests you follow will appear here. Follow some things to get started.",
-            modifier = Modifier.padding(start = 10.dp, end = 10.dp).fillMaxWidth(),
-            textAlign = TextAlign.Center
+            modifier = Modifier
+                .padding(24.dp, 0.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyMedium
         )
         Spacer(modifier = Modifier.padding(top = 24.dp))
 
@@ -263,7 +272,9 @@ fun Body(modifier: Modifier = Modifier) {
         // Hiển thị các TopicItem với trạng thái isAdded được lưu trữ trong topicItems
         LazyHorizontalGrid(
             rows = GridCells.Fixed(3),
-            modifier = Modifier.height(200.dp).padding(start = 16.dp),
+            modifier = Modifier
+                .height(200.dp)
+                .padding(start = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
@@ -285,7 +296,9 @@ fun Body(modifier: Modifier = Modifier) {
 
         Button(
             onClick = {},
-            modifier = Modifier.fillMaxWidth().padding(start = 10.dp, end = 10.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 10.dp, end = 10.dp),
             colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.inverseSurface),
             enabled = isAnyItemSelected
         ) {
@@ -339,7 +352,8 @@ fun TopicItems(
                 Icon(
                     Icons.Default.Done,
                     "",
-                    Modifier.size(24.dp)
+                    Modifier
+                        .size(24.dp)
                         .background(MaterialTheme.colorScheme.primaryContainer)
                 )
             } else {
@@ -351,6 +365,41 @@ fun TopicItems(
             }
         }
         Spacer(modifier = Modifier.padding(7.dp))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CardView(
+
+){
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Image(
+            painter = painterResource(R.drawable.compose_image),
+            ""
+        )
+        Column {
+            Box(Modifier.fillMaxWidth()){
+                Text(
+                    "New Compose for Wear OS codelab",
+                    style = MaterialTheme.typography.headlineSmall,
+                    modifier = Modifier.padding(start = 16.dp,end = 64.dp)
+                )
+
+                IconButton(onClick = {},
+                    modifier = Modifier
+                        .padding(end = 16.dp)
+                        .size(32.dp)
+                        .background(MaterialTheme.colorScheme.primaryContainer, CircleShape)
+                        .align(Alignment.CenterEnd)
+                ) {
+                    Icon(painterResource(R.drawable.ic_bookmark),
+                        "",
+                        modifier = Modifier.size(18.dp)
+                    )
+                }
+            }
+        }
     }
 }
 
