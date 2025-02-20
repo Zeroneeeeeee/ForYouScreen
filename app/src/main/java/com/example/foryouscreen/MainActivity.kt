@@ -400,13 +400,44 @@ fun CardView(
                 }
             }
         }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(16.dp,12.dp)
+        ){
+            Icon(
+                painterResource(R.drawable.ic_dot),
+                "",
+                modifier = Modifier.padding(end = 8.dp)
+                )
+            Text(
+                "January 1, 2021",
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(start = 32.dp)
+            )
+            Text(
+                "developer.android.com",
+                style = MaterialTheme.typography.labelSmall,
+                modifier = Modifier.padding(start = 8.dp)
+            )
+        }
+        Text(
+            "In this codelab, you can learn how Wear OS can work with Compose, what Wear OS specific composables are available, and more!",
+            modifier = Modifier.padding(16.dp,12.dp),
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .padding(16.dp,12.dp)
+        ){
+
+        }
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SampleAppTheme {
-        Body()
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun GreetingPreview() {
+//    SampleAppTheme {
+//        Body()
+//    }
+//}
