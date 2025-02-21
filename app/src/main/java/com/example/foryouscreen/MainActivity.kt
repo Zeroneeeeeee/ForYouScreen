@@ -18,13 +18,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -45,9 +44,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -64,7 +65,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.SampleAppTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -217,6 +217,20 @@ fun PeopleItems(
 
 @Composable
 fun Body(modifier: Modifier = Modifier) {
+    val peopleItems = remember {
+        mutableStateListOf(
+            TopicItemData(R.drawable.ic_person, "Fernando"),
+            TopicItemData(R.drawable.ic_person, "Alex"),
+            TopicItemData(R.drawable.ic_person, "Sam"),
+            TopicItemData(R.drawable.ic_person, "Lee"),
+            TopicItemData(R.drawable.ic_person, "Ping"),
+            TopicItemData(R.drawable.ic_person, "Anna"),
+            TopicItemData(R.drawable.ic_person, "Marty"),
+            TopicItemData(R.drawable.ic_person, "Daniel"),
+            // Thêm các item khác ở đây
+        )
+    }
+
     // Tạo danh sách các TopicItemData với trạng thái isAdded
     val topicItems = remember {
         mutableStateListOf(
@@ -237,12 +251,15 @@ fun Body(modifier: Modifier = Modifier) {
             // Thêm các item khác ở đây
         )
     }
+    var showCard by remember { mutableStateOf(false) }
     val isAnyItemSelected = topicItems.any { it.isAdded }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.fillMaxSize().verticalScroll(
-            state = rememberScrollState()
-        )
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(
+                state = rememberScrollState()
+            )
     ) {
         Spacer(modifier = Modifier.padding(top = 24.dp))
         Text(
@@ -266,11 +283,11 @@ fun Body(modifier: Modifier = Modifier) {
 
         // Hiển thị danh sách PeopleItems (dữ liệu mẫu)
         LazyRow(modifier = Modifier.fillMaxWidth()) {
-            items(10) { index -> // Giả sử bạn muốn hiển thị 10 item
+            items(peopleItems) { item -> // Giả sử bạn muốn hiển thị 10 item
                 Spacer(modifier = Modifier.padding(start = 10.dp))
                 PeopleItems(
-                    icon = R.drawable.ic_person, // Thay đổi với hình ảnh bạn muốn hiển thị
-                    name = "Person #$index"
+                    icon = item.icon,
+                    name = item.name
                 )
                 Spacer(modifier = Modifier.padding(end = 10.dp))
             }
@@ -297,7 +314,11 @@ fun Body(modifier: Modifier = Modifier) {
                         val updatedItem =
                             item.copy(isAdded = newState) // Tạo đối tượng mới với isAdded mới
                         topicItems[topicItems.indexOf(item)] = updatedItem
-                    }
+                        if(item.name == "Accessibility"){
+                            showCard = !showCard
+                        }
+                    },
+
                 )
 
             }
@@ -315,8 +336,9 @@ fun Body(modifier: Modifier = Modifier) {
         ) {
             Text("Done")
         }
-
-        CardView()
+        if(showCard) {
+            CardView()
+        }
     }
 }
 
