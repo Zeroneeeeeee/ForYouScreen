@@ -1,4 +1,4 @@
-package com.example.foryouscreen
+package com.example.foryouscreen.common
 
 data class TopicItemData(
     val icon: Int,
