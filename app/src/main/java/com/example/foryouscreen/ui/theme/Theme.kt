@@ -1,72 +1,88 @@
-package com.example.compose
+package com.example.foryouscreen.ui.theme
 
 import androidx.compose.material3.MaterialTheme.shapes
-import com.example.foryouscreen.ui.theme.AppTypography
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = primaryDark,
-    onPrimary = onPrimaryDark,
-    primaryContainer = primaryContainerDark,
-    onPrimaryContainer = onPrimaryContainerDark,
-    secondary = secondaryDark,
-    onSecondary = onSecondaryDark,
-    secondaryContainer = secondaryContainerDark,
-    onSecondaryContainer = onSecondaryContainerDark,
-    tertiary = tertiaryDark,
-    onTertiary = onTertiaryDark,
-    tertiaryContainer = tertiaryContainerDark,
-    onTertiaryContainer = onTertiaryContainerDark,
-    error = errorDark,
-    onError = onErrorDark,
-    errorContainer = errorContainerDark,
-    onErrorContainer = onErrorContainerDark,
-    background = backgroundDark,
-    onBackground = onBackgroundDark,
-    surface = surfaceDark,
-    onSurface = onSurfaceDark,
-    surfaceVariant = surfaceVariantDark,
-    onSurfaceVariant = onSurfaceVariantDark,
-    outline = outlineDark,
-    inverseSurface = inverseSurfaceDark,
-    inverseOnSurface = inverseOnSurfaceDark,
+val customLightColorScheme = ColorScheme(
+    primary = primary,      // Màu Primary
+    onPrimary = on_primary,          // Màu chữ trên Primary
+    primaryContainer = primary_container, // Màu container của Primary
+    onPrimaryContainer = on_primary_container, // Màu chữ trên container của Primary
+    inversePrimary = Color(0xFFBB86FC),
+    secondary = secondary,    // Màu Secondary
+    onSecondary = on_secondary,        // Màu chữ trên Secondary
+    secondaryContainer = primary_container, // Màu container của Secondary
+    onSecondaryContainer = on_secondary_container, // Màu chữ trên container của Secondary
+    tertiary = tertiary,     // Màu Tertiary
+    onTertiary = on_tertiary,         // Màu chữ trên Tertiary
+    tertiaryContainer = tertiary_container, // Màu container của Tertiary
+    onTertiaryContainer = on_tertiary_container, // Màu chữ trên container của Tertiary
+    background = background,         // Màu nền
+    onBackground = on_background,       // Màu chữ trên nền
+    surface = surface,            // Màu surface
+    onSurface = on_surface,          // Màu chữ trên surface
+    surfaceVariant = surface_variant, // Màu nền phụ
+    onSurfaceVariant = on_surface_variant,   // Màu chữ trên nền phụ
+    surfaceTint = Color(0xFF6200EE),  // Màu tint của surface
+    inverseSurface = inverse_surface,     // Màu surface ngược
+    inverseOnSurface = inverse_on_surface,   // Màu chữ trên surface ngược
+    error = error,                // Màu lỗi
+    onError = on_error,            // Màu chữ trên lỗi
+    errorContainer = error_container,
+    onErrorContainer = on_error_container,
+    outline = outline,             // Màu outline
+    outlineVariant = Color.Unspecified,// Màu primary ngược
+    scrim = Color.Unspecified,
+    surfaceBright = Color.Unspecified,
+    surfaceDim = Color.Unspecified,
+    surfaceContainer = Color.Unspecified,
+    surfaceContainerHigh = Color.Unspecified,
+    surfaceContainerHighest = Color.Unspecified,
+    surfaceContainerLow = Color.Unspecified,
+    surfaceContainerLowest = Color.Unspecified,
 )
-
-private val LightColorScheme = lightColorScheme(
-    primary = primaryLight,
-    onPrimary = onPrimaryLight,
-    primaryContainer = primaryContainerLight,
-    onPrimaryContainer = onPrimaryContainerLight,
-    secondary = secondaryLight,
-    onSecondary = onSecondaryLight,
-    secondaryContainer = secondaryContainerLight,
-    onSecondaryContainer = onSecondaryContainerLight,
-    tertiary = tertiaryLight,
-    onTertiary = onTertiaryLight,
-    tertiaryContainer = tertiaryContainerLight,
-    onTertiaryContainer = onTertiaryContainerLight,
-    error = errorLight,
-    onError = onErrorLight,
-    errorContainer = errorContainerLight,
-    onErrorContainer = onErrorContainerLight,
-    background = backgroundLight,
-    onBackground = onBackgroundLight,
-    surface = surfaceLight,
-    onSurface = onSurfaceLight,
-    surfaceVariant = surfaceVariantLight,
-    onSurfaceVariant = onSurfaceVariantLight,
-    outline = outlineLight,
-    inverseSurface = inverseSurfaceLight,
-    inverseOnSurface = inverseOnSurfaceLight,
+val customDarkColorTheme = ColorScheme(
+    primary = primary_dark,      // Màu Primary
+    onPrimary = on_primary_dark,          // Màu chữ trên Primary
+    primaryContainer = primary_container_dark, // Màu container của Primary
+    onPrimaryContainer = on_primary_container_dark, // Màu chữ trên container của Primary
+    inversePrimary = Color(0xFFBB86FC),
+    secondary = secondary_dark,    // Màu Secondary
+    onSecondary = on_secondary_dark,        // Màu chữ trên Secondary
+    secondaryContainer = primary_container_dark, // Màu container của Secondary
+    onSecondaryContainer = on_secondary_container_dark, // Màu chữ trên container của Secondary
+    tertiary = tertiary_dark,     // Màu Tertiary
+    onTertiary = on_tertiary_dark,         // Màu chữ trên Tertiary
+    tertiaryContainer = tertiary_container_dark, // Màu container của Tertiary
+    onTertiaryContainer = on_tertiary_container_dark, // Màu chữ trên container của Tertiary
+    background = background_dark,         // Màu nền
+    onBackground = on_background_dark,       // Màu chữ trên nền
+    surface = surface_dark,            // Màu surface
+    onSurface = on_surface_dark,          // Màu chữ trên surface
+    surfaceVariant = surface_variant_dark, // Màu nền phụ
+    onSurfaceVariant = on_surface_variant_dark,   // Màu chữ trên nền phụ
+    surfaceTint = Color(0xFF6200EE),  // Màu tint của surface
+    inverseSurface = inverse_surface_dark,     // Màu surface ngược
+    inverseOnSurface = inverse_on_surface_dark,   // Màu chữ trên surface ngược
+    error = error_dark,                // Màu lỗi
+    onError = on_error_dark,            // Màu chữ trên lỗi
+    errorContainer = error_container_dark,
+    onErrorContainer = on_error_container_dark,
+    outline = outline_dark,             // Màu outline
+    outlineVariant = Color.Unspecified,// Màu primary ngược
+    scrim = Color.Unspecified,
+    surfaceBright = Color.Unspecified,
+    surfaceDim = Color.Unspecified,
+    surfaceContainer = Color.Unspecified,
+    surfaceContainerHigh = Color.Unspecified,
+    surfaceContainerHighest = Color.Unspecified,
+    surfaceContainerLow = Color.Unspecified,
+    surfaceContainerLowest = Color.Unspecified,
 )
 
 @Composable
@@ -75,8 +91,8 @@ fun SampleAppTheme(
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> customDarkColorTheme
+        else -> customLightColorScheme
     }
 
     MaterialTheme(

@@ -1,5 +1,6 @@
 package com.example.foryouscreen
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -153,17 +154,21 @@ fun BodyContent(
         Spacer(modifier = Modifier.padding(top = 24.dp))
 
         Button(
-            onClick = {
-                navController.navigate("compact_view")
-            },
+            onClick = { navController.navigate("compact_view") },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 10.dp, end = 10.dp),
-            colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.inverseSurface),
+                .padding(horizontal = 10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.run {
+                    if (isSystemInDarkTheme()) primary else inverseSurface
+                }
+            ),
             enabled = isAnyItemSelected
         ) {
-            Text("Done")
+            Text(text = "Done",
+                style = MaterialTheme.typography.labelLarge)
         }
+
 
         Spacer(modifier = Modifier.padding(12.dp))
         Text(

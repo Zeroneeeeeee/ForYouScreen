@@ -1,54 +1,82 @@
-package com.example.compose
+package com.example.foryouscreen.ui.theme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF8B418F)
-val onPrimaryLight = Color(0xFFFDFDFD)
-val primaryContainerLight = Color(0xFFFFD6FA)
-val onPrimaryContainerLight = Color(0xFF36003C)
-val secondaryLight = Color(0xFFA23F16)
-val onSecondaryLight = Color(0xFFFDFDFD)
-val secondaryContainerLight = Color(0xFFFFD6FA)
-val onSecondaryContainerLight = Color(0xFF380D00)
-val tertiaryLight = Color(0xFF00677F)
-val onTertiaryLight = Color(0xFFFDFDFD)
-val tertiaryContainerLight = Color(0xFFB7E9FD)
-val onTertiaryContainerLight = Color(0xFF001F28)
-val errorLight = Color(0xFFB91A1A)
-val onErrorLight = Color(0xFFFDFDFD)
-val errorContainerLight = Color(0xFFFDD9D5)
-val onErrorContainerLight = Color(0xFF410002)
-val backgroundLight = Color(0xFFFAFAFA)
-val onBackgroundLight = Color(0xFF201A1B)
-val surfaceLight = Color(0xFFFCFCFC)
-val onSurfaceLight = Color(0xFF201A1B)
-val surfaceVariantLight = Color(0xFFEBDDE7)
-val onSurfaceVariantLight = Color(0xFF4D444C)
-val outlineLight = Color(0xFF7E737B)
-val inverseSurfaceLight = Color(0xFF362F30)
-val inverseOnSurfaceLight = Color(0xFFFAEEEF)
+// primary
+val primary = Color(0xFF8B418F)
+val on_primary = Color.White
+val primary_container = Color(0xFFFFD6FA)
+val on_primary_container = Color(0xFF36003C)
 
-val primaryDark = Color(0xFF8A418E)
-val onPrimaryDark = Color(0xFFFDFDFD)
-val primaryContainerDark = Color(0xFFFDD5F8)
-val onPrimaryContainerDark = Color(0xFF36003C)
-val secondaryDark = Color(0xFFA13F16)
-val onSecondaryDark = Color(0xFFFDFDFD)
-val secondaryContainerDark = Color(0xFFFDDACE)
-val onSecondaryContainerDark = Color(0xFF380D00)
-val tertiaryDark = Color(0xFF00677F)
-val onTertiaryDark = Color(0xFFFDFDFD)
-val tertiaryContainerDark = Color(0xFFB7E9FD)
-val onTertiaryContainerDark = Color(0xFF001F28)
-val errorDark = Color(0xFFB91A1A)
-val onErrorDark = Color(0xFFFDFDFD)
-val errorContainerDark = Color(0xFFFDD9D5)
-val onErrorContainerDark = Color(0xFF410002)
-val backgroundDark = Color(0xFFFAFAFA)
-val onBackgroundDark = Color(0xFF201A1B)
-val surfaceDark = Color(0xFFFAFAFA)
-val onSurfaceDark = Color(0xFF201A1B)
-val surfaceVariantDark = Color(0xFFEBDDE7)
-val onSurfaceVariantDark = Color(0xFF4D444C)
-val outlineDark = Color(0xFF7E737B)
-val inverseSurfaceDark = Color(0xFF362F30)
-val inverseOnSurfaceDark = Color(0xFFF8ECEE)
+val on_surface = Color(0xFF201A1B)
+val surface = Color(0xFFFCFCFC)
+val on_surface_variant = Color(0xFF4D444C)
+val surface_variant = Color(0xFFEDDEE8)
+val inverse_on_surface = Color(0xFFFAEEEF)
+val inverse_surface = Color(0xFF362F30)
+
+// background
+val on_background = Color(0xFF201A1B)
+val background = Color(0xFFFCFCFC)
+val outline = Color(0xFF7F747C)
+
+// secondary
+val secondary = Color(0xFFA23F16)
+val on_secondary = Color.White
+val secondary_container = Color(0xFFFFDBCF)
+val on_secondary_container = Color(0xFF380D00)
+
+// tertiary
+val tertiary = Color(0xFF006780)
+val on_tertiary = Color.White
+val tertiary_container = Color(0xFFB8EAFF)
+val on_tertiary_container = Color(0xFF001F28)
+
+// error
+val error = Color(0xFFBA1A1A)
+val on_error = Color.White
+val error_container = Color(0xFFFFDAD6)
+val on_error_container = Color(0xFF410002)
+
+val surface2_light = lightColorScheme(
+    primary = Color(0x148B418F), // Màu có độ trong suốt 8%
+    secondary = Color(0xFFFFFBFF)  // Màu trắng ngà
+)
+
+// dark color
+
+// primary
+val primary_dark = Color(0xFFFFA9FE)
+val on_primary_dark = Color(0xFF560A5D)
+val primary_container_dark = Color(0xFF702776)
+val on_primary_container_dark = primary_container
+
+val on_surface_dark = Color(0xFFECDFE0)
+val surface_dark = on_surface
+val on_surface_variant_dark = Color(0xFFD0C3CC)
+val surface_variant_dark = on_surface_variant
+val inverse_on_surface_dark = on_background
+val inverse_surface_dark = Color(0xFFECDFE0)
+
+// background
+val on_background_dark = inverse_surface_dark
+val background_dark = on_background
+val outline_dark = Color(0xFF998D96)
+
+// secondary
+val secondary_dark = Color(0xFFFFB59B)
+val on_secondary_dark = Color(0xFF5B1A00)
+val secondary_container_dark = Color(0xFF812800)
+val on_secondary_container_dark = secondary_container
+
+// tertiary
+val tertiary_dark = Color(0xFF5DD5FC)
+val on_tertiary_dark = Color(0xFF003544)
+val tertiary_container_dark = Color(0xFF004D61)
+val on_tertiary_container_dark = tertiary_container
+
+// error
+val error_dark = Color(0xFFFFB4AB)
+val on_error_dark = Color(0xFFFFB4AB)
+val error_container_dark = Color(0xFF93000A)
+val on_error_container_dark = error_container

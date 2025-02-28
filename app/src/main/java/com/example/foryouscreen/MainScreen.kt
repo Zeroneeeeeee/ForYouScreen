@@ -1,6 +1,7 @@
 package com.example.foryouscreen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -79,7 +81,9 @@ fun MainScreen() {
             )
         },
         bottomBar = {
-            BottomAppBar {
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.background
+            ) {
                 NavigationBarItem(
                     selected = selectedItem.value == 0,
                     onClick = { selectedItem.value = 0 },
@@ -95,7 +99,16 @@ fun MainScreen() {
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             style = MaterialTheme.typography.labelMedium
                         )
-                    }
+                    },
+                    colors = NavigationBarItemColors(
+                        selectedIconColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onPrimaryContainer,
+                        selectedTextColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onPrimaryContainer,
+                        selectedIndicatorColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.primaryContainer,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurface,
+                        unselectedTextColor = MaterialTheme.colorScheme.onSurface,
+                        disabledIconColor =MaterialTheme.colorScheme.onSurface,
+                        disabledTextColor = MaterialTheme.colorScheme.onSurface
+                    ),
                 )
                 NavigationBarItem(
                     selected = selectedItem.value == 1,
@@ -134,7 +147,7 @@ fun MainScreen() {
                 .fillMaxSize()
                 .background(
                     brush = Brush.linearGradient(
-                        colors = listOf(Color(0xFFFAEEEF), Color(0xFFFFD6FA)),
+                        colors = listOf(MaterialTheme.colorScheme.inverseOnSurface, MaterialTheme.colorScheme.primaryContainer),
                         start = Offset(2000f, 0f),
                         end = Offset(0f, 3000f),
                     )

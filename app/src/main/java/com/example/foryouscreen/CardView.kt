@@ -3,6 +3,7 @@ package com.example.foryouscreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -101,12 +103,13 @@ fun CardView(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
         ) {
-            Image(
+            Icon(
                 painterResource(R.drawable.ic_dot),
                 contentDescription = "",
                 modifier = Modifier
                     .size(8.dp)
-                    .align(Alignment.CenterVertically)
+                    .align(Alignment.CenterVertically),
+                tint = MaterialTheme.colorScheme.primary
             )
             Text(
                 "January 1, 2021",
@@ -148,14 +151,17 @@ fun CardView(modifier: Modifier = Modifier) {
                 Button(
                     onClick = {},
                     enabled = true,
-                    colors = ButtonColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer,
-                        contentColor = Color.Unspecified,
-                        disabledContainerColor = Color.Unspecified,
-                        disabledContentColor = Color.Unspecified
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.run {
+                            if (isSystemInDarkTheme()) primary else primaryContainer
+                        }
                     )
                 ) {
-                    Text("Compose")
+                    Text("Compose",
+                        color = MaterialTheme.colorScheme.run {
+                            if (isSystemInDarkTheme()) onPrimary else onPrimaryContainer
+                        }
+                    )
                 }
                 Button(
                     onClick = {},

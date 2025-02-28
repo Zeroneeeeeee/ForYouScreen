@@ -3,6 +3,8 @@ package com.example.foryouscreen
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -11,12 +13,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -29,6 +33,7 @@ fun TopicItems(
     isAdded: Boolean,
     onButtonStateChange: (Boolean) -> Unit
 ) {
+
     Row(
         modifier = Modifier
             .size(width = 264.dp, height = 56.dp)
@@ -61,21 +66,31 @@ fun TopicItems(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
                 .clip(CircleShape)
-                .size(25.dp)
+                .size(25.dp),
         ) {
-            if (isAdded) {
+            val color1 : Color
+            val color2 : Color
+
+            if(isSystemInDarkTheme()){
+                color1 = if(!isAdded) Color.Transparent else MaterialTheme.colorScheme.primary
+                color2 = if(!isAdded) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onPrimary
+            }
+            else {
+                color1 = if(!isAdded) Color.Transparent else MaterialTheme.colorScheme.primaryContainer
+                color2 = if(!isAdded) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurfaceVariant
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(35.dp) // Điều chỉnh kích thước background
+                    .background(color1, CircleShape), // Màu nền lớn hơn icon
+                contentAlignment = Alignment.Center // Căn giữa icon trong nền
+            ) {
                 Icon(
-                    painterResource(R.drawable.ic_done),
-                    "",
-                    Modifier
-                        .size(24.dp)
-                        .background(MaterialTheme.colorScheme.primaryContainer)
-                )
-            } else {
-                Icon(
-                    painterResource(R.drawable.ic_add),
-                    "",
-                    Modifier.size(24.dp)
+                    painter = painterResource(if (isAdded) R.drawable.ic_done else R.drawable.ic_add),
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp), // Kích thước icon nhỏ hơn background
+                    tint = color2
                 )
             }
         }

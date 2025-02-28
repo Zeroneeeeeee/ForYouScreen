@@ -16,13 +16,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+@Preview(showBackground = true)
 @Composable
 fun PeopleItems(
-    @DrawableRes icon: Int,
+    @DrawableRes icon: Int =0,
     modifier: Modifier = Modifier,
     name: String = "Ha"
 ) {
@@ -32,19 +39,36 @@ fun PeopleItems(
                 .size(70.dp, 50.dp)
 
         ) {
+            val color1 = MaterialTheme.colorScheme.primary // Màu đầu tiên
+            val color2 = MaterialTheme.colorScheme.secondary // Màu thứ hai
+
+            // Tạo màu pha trộn giữa 2 màu có sẵn
+            val blendedColor = Brush.linearGradient(
+                colors = listOf(color1, color2), // Nâu đỏ -> Tím
+                start = Offset(0f, 0f),
+                end = Offset(100f, 100f)
+            )
             Box(
                 modifier = Modifier
-                    .clip(shape = CircleShape)
-                    .wrapContentSize()
+                    .size(50.dp)
                     .align(Alignment.BottomCenter)
+                    .clip(shape = CircleShape)
+                    .background(MaterialTheme.colorScheme.surfaceVariant)
+
             ) {
-                Image(
+                Icon(
                     painterResource(icon),
                     "",
                     modifier = Modifier
-                        .size(50.dp)
-                        .align(Alignment.BottomCenter)
-                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                        .align(Alignment.Center)
+                        .size(40.dp)
+                        .graphicsLayer(alpha = 0.99f) // Bắt buộc để gradient hoạt động
+                        .drawWithCache {
+                            onDrawWithContent {
+                                drawContent()
+                                drawRect(blendedColor, blendMode = BlendMode.SrcAtop) // Áp gradient
+                            }
+                        }
                 )
             }
             IconButton(
@@ -56,7 +80,7 @@ fun PeopleItems(
                 Icon(
                     painterResource(R.drawable.ic_add),
                     "",
-                    modifier = Modifier.background(Color.White, shape = CircleShape)
+                    modifier = Modifier.background(MaterialTheme.colorScheme.surface, shape = CircleShape)
                 )
             }
         }
